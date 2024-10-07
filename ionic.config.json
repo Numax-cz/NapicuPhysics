@@ -1,0 +1,7 @@
+{
+  "name": "NapicuAnswer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
