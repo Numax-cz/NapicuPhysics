@@ -4,15 +4,11 @@ import { MainPage } from './main.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
-    component: MainPage,
-    children: []
-  },
-  {
     path: '',
-    redirectTo: '/tabs',
+    component: MainPage,
     pathMatch: 'full'
-  }
+  },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
