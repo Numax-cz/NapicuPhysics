@@ -14,7 +14,8 @@ interface PhysicalQuantitiesQuestion extends PhysicalQuantities{
 
 interface QuestionButtons {
   index: number,
-  correct?: boolean
+  is_correct?: boolean,
+  correct_button?: number
 }
 
 @Component({
@@ -33,6 +34,10 @@ interface QuestionButtons {
 export class MainPage {
   private readonly MAX_OPTIONS: number = 4;
 
+  private declare success_sound: HTMLAudioElement;
+
+  private declare error_sound: HTMLAudioElement;
+
   private readonly values: PhysicalQuantities[] = QUANTITIES;
 
   public display_value: PhysicalQuantitiesQuestion | null = null;
@@ -40,6 +45,10 @@ export class MainPage {
   public selected_button: QuestionButtons | null = null;
 
   constructor() {
+    this.success_sound  = new Audio('assets/sounds/success.mp3');
+    this.error_sound = new Audio('assets/sounds/error.mp3');
+    this.error_sound.volume = 0.7;
+
     this.update_value();
   }
 
@@ -60,8 +69,11 @@ export class MainPage {
     const question_unit: string = Object.values(randomPhysicalQuantities)[2] as string;
 
     let incorrect_options: string[] = [];
+    let questionIndexes: number[] = [randomQuestionIndex];
+
     for (let i = 0; i < this.MAX_OPTIONS - 1; i++) {
-      let random_option = this.get_random_option(next_v, [randomQuestionIndex]);
+      let random_option = this.get_random_option(next_v, questionIndexes);
+      questionIndexes.push(random_option.selected_index);
       incorrect_options.push(random_option.value);
     }
 
@@ -80,7 +92,15 @@ export class MainPage {
     let random_index: number;
     do {
       random_index = Math.floor(Math.random() * this.values.length);
-    } while (randomQuestionIndexes.includes(random_index));
+
+      var valueExists: boolean = false;
+      for (const index of randomQuestionIndexes) {
+        if (Object.values(this.values[random_index])[next_v] as string === Object.values(this.values[index])[next_v] as string) {
+          valueExists = true;
+          break;
+        }
+      }
+    } while (randomQuestionIndexes.includes(random_index) || valueExists);
 
     return {value: Object.values(this.values[random_index])[next_v] as string, selected_index: random_index };
   }
@@ -97,10 +117,23 @@ export class MainPage {
 
   public check_answer(index: number): void {
     if(this.display_value) {
+      console.log(this.display_value.value)
       this.selected_button = {
         index: index,
-        correct: this.display_value.options[index] === this.display_value.value
+        is_correct: this.display_value.options[index] === this.display_value.value,
+        correct_button: ((): number | undefined => {
+          for (const [index, value] of this.display_value?.options.entries()) {
+            if(value === this.display_value?.value) return index
+          }
+          return undefined
+        })()
+
       }
+
+      if(this.selected_button.is_correct) {
+        this.success_sound.play();
+      } else this.error_sound.play();
+
       setTimeout(() => {
         this.update_value();
       }, 700);

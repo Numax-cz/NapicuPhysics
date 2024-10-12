@@ -1,8 +1,11 @@
 .background {
-  background-color: #ff9100;
   margin: 0;
   padding: 0;
   height: 100vh;
+}
+
+.audio-button{
+  z-index: 1000;
 }
 
 .question-box {
