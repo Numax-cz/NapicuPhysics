@@ -8,7 +8,8 @@
     "build": "ng build --build-optimizer --extract-licenses --output-hashing none --optimization true",
     "build-dev": "ng build --output-hashing none --configuration development",
     "sync-ios": "ionic cap sync ios",
-    "open-ios": "ionic cap open ios"
+    "open-ios": "ionic cap open ios",
+    "gen-icon-ios": "npx @capacitor/assets generate --ios --iconBackgroundColor '#eeeeee' --iconBackgroundColorDark '#222222' --splashBackgroundColor '#eeeeee' --splashBackgroundColorDark '#111111' --assetPath \"./src/assets/\""
   },
   "private": true,
   "dependencies": {

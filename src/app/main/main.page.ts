@@ -117,7 +117,6 @@ export class MainPage {
 
   public check_answer(index: number): void {
     if(this.display_value) {
-      console.log(this.display_value.value)
       this.selected_button = {
         index: index,
         is_correct: this.display_value.options[index] === this.display_value.value,
@@ -127,7 +126,6 @@ export class MainPage {
           }
           return undefined
         })()
-
       }
 
       if(this.selected_button.is_correct) {
@@ -136,6 +134,10 @@ export class MainPage {
 
       setTimeout(() => {
         this.update_value();
+        this.success_sound.pause();
+        this.success_sound.currentTime = 0;
+        this.error_sound.pause();
+        this.error_sound.currentTime = 0;
       }, 700);
     }
   }
