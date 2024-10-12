@@ -1,8 +1,11 @@
 .background {
-  background-color: #ff9100;
   margin: 0;
   padding: 0;
   height: 100vh;
+}
+
+.audio-button{
+  z-index: 1000;
 }
 
 .question-box {
@@ -23,10 +26,20 @@
 
 .question-items > .box {
   width: 40%;
+  text-wrap: wrap;
+  @media(max-width: 375px) {
+    width: 100%;
+  }
 }
 
 .button-cl {
   &:active {
     transform: scale(0.9);
+  }
+}
+
+@media(max-width: 375px) {
+  .question-items > .box {
+    width: 100%!important;
   }
 }

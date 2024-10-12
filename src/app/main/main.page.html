@@ -1,18 +1,22 @@
-<div class="background">
-  <div class="section question-box">
-    <div class="box has-text-centered has-text-weight-bold is-size-3 is-position-relative" style="z-index: 100">
+<div class="background ion-color-light">
+  <div class="section question-box mt-6">
+    <div class="box has-text-centered has-background-primary has-text-white has-text-weight-bold is-size-3 is-position-relative"
+         style="z-index: 100">
           {{display_value?.name}} <span class="has-text-weight-normal is-size-4 is-unselectable" style="color:
-          rgba(16,16,16,0.5)">({{display_value?.unit}})
-    </span>
+          rgba(16,16,16,0.5)">({{display_value?.unit}})</span>
     </div>
     <div class="container">
       <div *ngIf="display_value" class="is-flex is-align-items-flex-start is-flex-wrap-wrap
       is-justify-content-space-between question-items has-text-centered has-text-weight-bold is-unselectable">
         <button [@ContentAnimation] *ngFor="let i of display_value.options; let index = index"
                 (click)="check_answer(index)"
-             class="box button p-4 button-cl" style="border: 0"
-             [ngClass]="{ 'is-success': selected_button?.index === index,
-             'has-background-danger': selected_button?.index === index && !selected_button?.correct }">
+             class="box button has-correct-value p-4 button-cl has-background-grey-lighter has-text-black has-text-weight-bold is-size-6"
+                style="border: 0;"
+             [ngClass]="{ 'has-background-success': selected_button?.index === index,
+             'has-background-danger': selected_button?.index === index && !selected_button?.is_correct,
+              'has-correct-value':  index === selected_button?.correct_button && selected_button?.index !== index &&
+              !selected_button?.is_correct
+              }">
           {{i}}
         </button>
       </div>
