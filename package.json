@@ -5,10 +5,8 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --build-optimizer --extract-licenses --output-hashing none --optimization true",
+    "build": "ng build --build-optimizer --extract-licenses --output-hashing none --optimization true && capacitor sync android && capacitor sync ios",
     "build-dev": "ng build --output-hashing none --configuration development",
-    "sync-ios": "ionic cap sync ios",
-    "sync-android": "ionic cap sync android",
     "open-ios": "ionic cap open ios",
     "open-android": "ionic cap open android",
     "gen-icon-ios": "npx @capacitor/assets generate --ios --iconBackgroundColor '#eeeeee' --iconBackgroundColorDark '#222222' --splashBackgroundColor '#eeeeee' --splashBackgroundColorDark '#111111' --assetPath \"./src/assets/\"",
