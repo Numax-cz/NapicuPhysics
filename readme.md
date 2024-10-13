@@ -11,6 +11,7 @@
     <img src="./screen.png" alt="App image" width="300">
   <br>
 </h1>
+
 ---
 ### DŮLEŽITÉ UPOZORNĚNÍ
 - Pro vývoj aplikací na iOS je zapotřebí aplikace Xcode, která je dostupná na MacOS.
