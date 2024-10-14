@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {QUANTITIES} from "./Quantities";
 import {NativeAudio} from "@capacitor-community/native-audio";
@@ -42,13 +42,16 @@ export class MainPage {
 
   public selected_button: QuestionButtons | null = null;
 
-  constructor() {
+  constructor(private ngZone: NgZone) {
     this.update_value();
   }
 
   private update_value(): void {
     this.selected_button = null;
-    this.display_value = this.get_random_question();
+
+    this.ngZone.run(() => {
+      this.display_value = this.get_random_question();
+    });
   }
 
   private get_random_question(): PhysicalQuantitiesQuestion {
@@ -110,7 +113,7 @@ export class MainPage {
   };
 
   public check_answer(index: number): void {
-    if(this.display_value) {
+    if(this.display_value && !this.selected_button) {
       this.selected_button = {
         index: index,
         is_correct: this.display_value.options[index] === this.display_value.value,

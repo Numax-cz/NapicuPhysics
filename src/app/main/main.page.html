@@ -10,12 +10,13 @@
       is-justify-content-space-between question-items has-text-centered has-text-weight-bold is-unselectable">
         <button [@ContentAnimation] *ngFor="let i of display_value.options; let index = index"
                 (click)="check_answer(index)"
-             class="box button has-correct-value p-4 button-cl has-background-grey-lighter has-text-black has-text-weight-bold is-size-6"
+             class="box button p-4  has-background-grey-lighter has-text-black has-text-weight-bold is-size-6"
                 style="border: 0;"
              [ngClass]="{ 'has-background-success': selected_button?.index === index,
              'has-background-danger': selected_button?.index === index && !selected_button?.is_correct,
               'has-correct-value':  index === selected_button?.correct_button && selected_button?.index !== index &&
-              !selected_button?.is_correct
+              !selected_button?.is_correct,
+              'button-cl': !selected_button
               }">
           {{i}}
         </button>
