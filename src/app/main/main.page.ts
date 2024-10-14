@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {QUANTITIES} from "./Quantities";
+import {NativeAudio} from "@capacitor-community/native-audio";
+import {AppComponent} from "../app.component";
 
 export interface PhysicalQuantities {
   name: string;
@@ -129,8 +131,8 @@ export class MainPage {
       }
 
       if(this.selected_button.is_correct) {
-        this.success_sound.play();
-      } else this.error_sound.play();
+        NativeAudio.play({assetId: AppComponent.SUCCESS_AUDIO_ID});
+      } else NativeAudio.play({assetId: AppComponent.ERROR_AUDIO_ID});
 
       setTimeout(() => {
         this.update_value();
