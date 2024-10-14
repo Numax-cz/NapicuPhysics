@@ -28,18 +28,18 @@ export class AppComponent {
         assetId: AppComponent.SUCCESS_AUDIO_ID,
         assetPath: success_audio_path,
         audioChannelNum: 1,
-        isUrl: false
+        isUrl: false,
+        volume: 0.4
       });
 
       NativeAudio.preload({
         assetId: AppComponent.ERROR_AUDIO_ID,
         assetPath: error_audio_path,
         audioChannelNum: 1,
-        isUrl: false
+        isUrl: false,
+        volume: 0.1
       });
 
-      NativeAudio.setVolume({assetId: AppComponent.SUCCESS_AUDIO_ID, volume: 0.4});
-      NativeAudio.setVolume({assetId: AppComponent.ERROR_AUDIO_ID, volume: 0.1});
 
       if(this.platform.is("android")) {
         StatusBar.setOverlaysWebView({overlay: true});

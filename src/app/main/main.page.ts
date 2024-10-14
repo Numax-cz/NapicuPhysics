@@ -42,15 +42,18 @@ export class MainPage {
 
   public selected_button: QuestionButtons | null = null;
 
-  constructor(private ngZone: NgZone) {
+  constructor() {
     this.update_value();
   }
 
   private update_value(): void {
     this.selected_button = null;
 
-    this.ngZone.run(() => {
-      this.display_value = this.get_random_question();
+    this.display_value = null;
+
+    setTimeout(() => {
+      const newQuestion: PhysicalQuantitiesQuestion = this.get_random_question();
+      this.display_value = newQuestion;
     });
   }
 
