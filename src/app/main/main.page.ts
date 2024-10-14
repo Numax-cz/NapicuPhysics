@@ -36,10 +36,6 @@ interface QuestionButtons {
 export class MainPage {
   private readonly MAX_OPTIONS: number = 4;
 
-  private declare success_sound: HTMLAudioElement;
-
-  private declare error_sound: HTMLAudioElement;
-
   private readonly values: PhysicalQuantities[] = QUANTITIES;
 
   public display_value: PhysicalQuantitiesQuestion | null = null;
@@ -47,10 +43,6 @@ export class MainPage {
   public selected_button: QuestionButtons | null = null;
 
   constructor() {
-    this.success_sound  = new Audio('assets/sounds/success.mp3');
-    this.error_sound = new Audio('assets/sounds/error.mp3');
-    this.error_sound.volume = 0.7;
-
     this.update_value();
   }
 
@@ -136,10 +128,6 @@ export class MainPage {
 
       setTimeout(() => {
         this.update_value();
-        this.success_sound.pause();
-        this.success_sound.currentTime = 0;
-        this.error_sound.pause();
-        this.error_sound.currentTime = 0;
       }, 700);
     }
   }
