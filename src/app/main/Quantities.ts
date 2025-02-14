@@ -41,7 +41,7 @@ export const QUANTITIES: PhysicalQuantities[] = [
   {name: "Moment síly", value: "M", unit: "Nm"},
   {name: "Konduktivita", value: "γ", unit: "S/m¹"},
   {name: "Magnetická vodivost", value: "λ (Gm)", unit: "H"},
-  {name: "Jálový výkon", value: "Q", unit: "var"},
+  {name: "Jalový výkon", value: "Q", unit: "var"},
   {name: "Zdánlivý výkon", value: "S", unit: "VA"},
   {name: "Admitance", value: "Y", unit: "S"},
   {name: "Elektrická indukce", value: "D", unit: "C/m²"},

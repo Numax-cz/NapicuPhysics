@@ -12,15 +12,18 @@
                 (click)="check_answer(index)"
              class="box button p-4  has-background-grey-lighter has-text-black has-text-weight-bold is-size-6"
                 style="border: 0;"
-             [ngClass]="{ 'has-background-success': selected_button?.index === index,
-             'has-background-danger': selected_button?.index === index && !selected_button?.is_correct,
-              'has-correct-value':  index === selected_button?.correct_button && selected_button?.index !== index &&
-              !selected_button?.is_correct,
+             [ngClass]="{
+             'has-incorrect-value': selected_button?.index === index && !selected_button?.is_correct,
+             'has-correct-value':  (index === selected_button?.correct_button && selected_button?.index !== index && !selected_button?.is_correct) || selected_button?.index === index,
               'button-cl': !selected_button
               }">
           {{i}}
         </button>
       </div>
+    </div>
+    <div *ngIf="show_new_question_button" class="section has-text-centered">
+
+      <button class="button p-3 has-background-info next-button" (click)="update_value()">Další</button>
     </div>
   </div>
 </div>

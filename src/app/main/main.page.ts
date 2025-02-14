@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, NgZone} from '@angular/core';
+import {Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {QUANTITIES} from "./Quantities";
 import {NativeAudio} from "@capacitor-community/native-audio";
@@ -42,18 +42,21 @@ export class MainPage {
 
   public selected_button: QuestionButtons | null = null;
 
+  public show_new_question_button: boolean = false;
+
   constructor() {
     this.update_value();
   }
 
-  private update_value(): void {
+  public update_value(): void {
     this.selected_button = null;
 
     this.display_value = null;
 
+    this.show_new_question_button = false;
+
     setTimeout(() => {
-      const newQuestion: PhysicalQuantitiesQuestion = this.get_random_question();
-      this.display_value = newQuestion;
+      this.display_value = this.get_random_question();
     });
   }
 
@@ -130,11 +133,17 @@ export class MainPage {
 
       if(this.selected_button.is_correct) {
         NativeAudio.play({assetId: AppComponent.SUCCESS_AUDIO_ID});
-      } else NativeAudio.play({assetId: AppComponent.ERROR_AUDIO_ID});
+        this.show_new_question_button = false;
+      } else {
+        NativeAudio.play({assetId: AppComponent.ERROR_AUDIO_ID});
+        this.show_new_question_button = true;
+      }
 
-      setTimeout(() => {
-        this.update_value();
-      }, 700);
+      if(!this.show_new_question_button) {
+        setTimeout(() => {
+          this.update_value();
+        }, 700);
+      }
     }
   }
 }

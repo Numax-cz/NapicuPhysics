@@ -8,6 +8,10 @@
   background: #25d107 !important;
 }
 
+.has-incorrect-value {
+  background: #e84118 !important;
+}
+
 .question-box {
   width: 60%;
   margin-left: auto;
@@ -32,10 +36,10 @@
   }
 }
 
-.button-cl {
-  &:active {
-    transform: scale(0.9);
-  }
+.next-button {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media(max-width: 375px) {
