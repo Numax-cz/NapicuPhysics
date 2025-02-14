@@ -1,8 +1,8 @@
 {
   "name": "NapicuAnswer",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "0.1.0",
+  "author": "Numax",
+  "homepage": "https://fyzika.napicu.eu",
   "scripts": {
     "start": "ng serve",
     "build": "ng build --build-optimizer --extract-licenses --output-hashing none --optimization true && capacitor sync android && capacitor sync ios",
